@@ -4,6 +4,8 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const lyricsFinder = require("lyrics-finder")
 const SpotifyWebApi = require("spotify-web-api-node")
+const path = require('path');
+
 
 const app = express()
 app.use(cors())
@@ -32,6 +34,13 @@ app.post("/refresh", (req, res) => {
             res.sendStatus(400)
         })
 })
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post("/login", (req, res) => {
     const code = req.body.code
