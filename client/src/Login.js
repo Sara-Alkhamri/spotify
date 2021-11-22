@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from './spotify-logo.png'
 
 import { Container } from 'react-bootstrap'
 
@@ -7,8 +8,15 @@ const AUTH_URL =
 
 export default function Login() {
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-            <a className="btn btn-success btn-lg" href={AUTH_URL}>Login With Spotify!</a>
+        <Container className="d-flex justify-content-center align-items-center flex-column" style={{ minHeight: '100vh', backgroundColor: 'black' }}>
+            <img
+                src={logo}
+                alt="Spotify logo"
+                style={
+                    { width: 'auto', height: '100px', margin: '1rem' }
+                }
+            />
+            <a className="btn btn-success btn-lg" href={AUTH_URL}>Login</a>
         </Container>
     )
 }
