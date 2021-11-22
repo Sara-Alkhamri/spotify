@@ -3,9 +3,13 @@
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
+    "engines": {
+        "node": "14.17.0"
+    },
     "scripts": {
         "devStart": "nodemon server.js",
-        "start": "node server.js"
+        "start": "node server.js",
+        "build": "cd client && npm install && npm run build"
     },
     "keywords": [],
     "author": "",

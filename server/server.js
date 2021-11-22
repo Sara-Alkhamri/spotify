@@ -12,6 +12,19 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+// Handle GET requests to /api route
+app.get("/api", (req, res) => {
+    res.json({ message: "Hello from server!" });
+});
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
+
 app.post("/refresh", (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
@@ -34,13 +47,6 @@ app.post("/refresh", (req, res) => {
             res.sendStatus(400)
         })
 })
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.post("/login", (req, res) => {
     const code = req.body.code
