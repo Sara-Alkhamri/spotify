@@ -8,8 +8,7 @@
     },
     "scripts": {
         "devStart": "nodemon server.js",
-        "start": "node server/index.js",
-        "build": "cd client && npm install && npm run build"
+        "start": "node server/index.js"
     },
     "keywords": [],
     "author": "",
